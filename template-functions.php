@@ -27,7 +27,7 @@ function template_magic_converter( $content, $vars, $basekey = '' ) {
 				'{{ data.'. $varkey .' }}',
 			), array(
 				$varvalue,
-				esc_html( $varvalue ),
+				function_exists( 'esc_html' ) ? esc_html( $varvalue ) : strip_tags( $varvalue ),
 			), $content );
 
 		} elseif ( is_object( $varvalue ) || is_array( $varvalue ) ) {

@@ -1,5 +1,7 @@
 <?php
 
+require_once 'template-functions.php';
+
 // Hey, let's get a template output!
 $html = template( 'tmpl-gc-item-status.html', array(
 	'id'      => 1,
