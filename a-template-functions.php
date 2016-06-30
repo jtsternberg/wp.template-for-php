@@ -83,7 +83,7 @@ function template( $file, $vars, $is_html = false ) {
 
 
 // Hey, let's get a template output!
-$html = template( 'tmpl-gc-item-status.html', array(
+$html = template( 'b-tmpl-gc-item-status.html.html', array(
 	'id'      => 1,
 	'item'    => 2,
 	'mapping' => 3,
