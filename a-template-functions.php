@@ -22,7 +22,13 @@ function template_magic_converter( $content, $vars, $basekey = '' ) {
 				$varkey = $basekey . $varkey;
 			}
 
-			$content = str_replace( '{{ data.'. $varkey .' }}', $varvalue, $content );
+			$content = str_replace( array(
+				'{{{ data.'. $varkey .' }}}',
+				'{{ data.'. $varkey .' }}',
+			), array(
+				$varvalue,
+				esc_html( $varvalue ),
+			), $content );
 
 		} elseif ( is_object( $varvalue ) || is_array( $varvalue ) ) {
 			$content = template_magic_converter( $content, $varvalue, $varkey . '.' );
@@ -78,11 +84,13 @@ function template( $file, $vars, $is_html = false ) {
 
 // Hey, let's get a template output!
 $html = template( 'tmpl-gc-item-status.html', array(
-	'id'           => 1,
-	'item'         => 2,
-	'mapping'      => 3,
-	'status'      => array(
-		'name'  => 'Status Name',
+	'id'      => 1,
+	'item'    => 2,
+	'mapping' => 3,
+	'open'    => '<div class="status-name">',
+	'close'   => '</div>',
+	'status'  => array(
+		'name'  => 'Hello World',
 		'color' => 'red',
 	),
 ) );
