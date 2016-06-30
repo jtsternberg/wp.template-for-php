@@ -89,7 +89,6 @@ $html = template( 'tmpl-gc-item-status.html', array(
 
 die( '<xmp>'. print_r( $html, true ) .'</xmp>' );
 
-
 /* Alternatively:
 
 $html = '<div id=""{{ data.id }}">{{ data.name }}</div>';
