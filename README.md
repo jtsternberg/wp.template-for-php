@@ -3,17 +3,20 @@ PHP parser for wp.template underscore templates.
 
 Definitely a work in progress.
 
-Done:
+**Done:**
 
-* Import/read tmpl script tags
+* Import/read tmpl script tags, or pass html directly
 * Convert variables, interpolated and escaped
 
-Todo:
+**Todo:**
 
 * Convert logic
 * Remove wrapping script tags
+* [Memoize](http://underscorejs.org/#memoize) output
 
-So far this is what `example.php` will output:
+___
+
+So far this is what [`example.php`](https://github.com/jtsternberg/wp.template-for-php/blob/master/example.php) will output:
 
 ```html
 <script type="text/html" id="tmpl-gc-item-status">
@@ -46,9 +49,11 @@ But the output should be:
 
 ```
 	
-Pull requests welcome!
+**Pull requests welcome!**
 
-For reference, this is what wp.template looks like:
+___
+
+For reference, this is what [wp.template](https://github.com/WordPress/WordPress/blob/master/wp-includes/js/wp-util.js#L8-L36) looks like:
 
 ```js
 /**
