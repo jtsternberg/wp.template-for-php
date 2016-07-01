@@ -48,7 +48,23 @@ And makes it this:
 		</div>
 	</div>
 </span>
+```
 
+From this:
+
+```php
+// Hey, let's output a template!
+WP_Underscore_Template::output( 'tmpl-gc-item-status.html', array(
+	'id'      => 1,
+	'item'    => 2,
+	'mapping' => 3,
+	'open'    => '<div class="status-name">',
+	'close'   => '</div>',
+	'status'  => array(
+		'name'  => 'Hello World',
+		'color' => 'red',
+	),
+) );
 ```
 	
 **Pull requests welcome!**
