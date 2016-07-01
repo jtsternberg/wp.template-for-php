@@ -87,7 +87,7 @@ class WP_Underscore_Template {
 		$cache_key = md5( $file ) . '--' . md5( serialize( $vars ) );
 
 		// store into cache a set of values that can be repeatably executed
-		if ( empty( $cache[ $cache_key ] ) ) {
+		if ( ! isset( self::$cache[ $cache_key ] ) ) {
 			self::$cache[ $cache_key ] = new self( $file, $data, $args );
 		}
 
