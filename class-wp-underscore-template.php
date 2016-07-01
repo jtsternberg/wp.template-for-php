@@ -51,7 +51,7 @@ class WP_Underscore_Template {
 	 * @return void
 	 */
 	public static function output( $file, $data = array(), $args = array() ) {
-		echo self::get( $file, $data );
+		echo self::get( $file, $data, $args );
 	}
 
 	/**
