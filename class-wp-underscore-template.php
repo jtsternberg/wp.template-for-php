@@ -245,31 +245,31 @@ class WP_Underscore_Template {
 
 		// Order matters here. Interpolate must be before escape.
 		$settings = array(
-				'evaluate'    => array(
-						'pattern' => '<#([\s\S]+?)#>',
-						'replace' => '<?php %2$s ?>',
-				),
-				'interpolate' => array(
-						'pattern' => '{{{([\s\S]+?)}}}',
-						'replace' => '<?php echo %2$s; ?>',
-				),
-				'escape'      => array(
-						'pattern' => '{{([\s\S]+?)}}',
-						'replace' => '<?php echo '. $escape_func .'( %2$s ); ?>',
-				),
+			'evaluate'    => array(
+				'pattern' => '<#([\s\S]+?)#>',
+				'replace' => '<?php %2$s ?>',
+			),
+			'interpolate' => array(
+				'pattern' => '{{{([\s\S]+?)}}}',
+				'replace' => '<?php echo %2$s; ?>',
+			),
+			'escape'      => array(
+				'pattern' => '{{([\s\S]+?)}}',
+				'replace' => '<?php echo '. $escape_func .'( %2$s ); ?>',
+			),
 		);
 
 		// Replace each of our settings patterns with settings replacements.
 		foreach( $settings as $process => $setting ) {
 			$source = preg_replace_callback(
 
-					'/' . $setting['pattern'] . '/',
+				'/' . $setting['pattern'] . '/',
 
-					function( $matches ) use ( $setting ) {
-						return vsprintf( $setting['replace'], $matches );
-					},
+				function( $matches ) use ( $setting ) {
+					return vsprintf( $setting['replace'], $matches );
+				},
 
-					$source
+				$source
 			);
 		}
 
