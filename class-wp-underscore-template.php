@@ -80,7 +80,7 @@ class WP_Underscore_Template {
 	 *
 	 * @return mixed
 	 */
-	protected function template_cache( $file, $data = array(), $args = array() ) {
+	protected static function template_cache( $file, $data = array(), $args = array() ) {
 
 		$vars = $args;
 		$vars['args'] = $args;
