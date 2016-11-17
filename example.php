@@ -3,7 +3,7 @@
 require_once 'class-wp-underscore-template.php';
 
 // Hey, let's get a template output!
-$get_html = WP_Underscore_Template::get( 'tmpl-gc-item-status.html', array(
+$get_html = WP_Underscore_Template::get( dirname( __FILE__ ) . '/tmpl-gc-item-status.html', array(
 	'id'      => 1,
 	'item'    => 2,
 	'mapping' => 3,
@@ -17,7 +17,7 @@ $get_html = WP_Underscore_Template::get( 'tmpl-gc-item-status.html', array(
 
 ob_start();
 // Do output
-WP_Underscore_Template::output( 'tmpl-gc-item-status.html', array(
+WP_Underscore_Template::output( dirname( __FILE__ ) . '/tmpl-gc-item-status.html', array(
 	'id'      => 1,
 	'item'    => 2,
 	'mapping' => 3,
