@@ -2,7 +2,7 @@
 	<span class="gc-status-column" data-id="{{ data.id }}" data-item="{{ data.item }}" data-mapping="{{ data.mapping }}">
 	<# if ( data.status.name ) { #>
 		<div class="gc-item-status">
-			<span class="gc-status-color" style="background-color:{{ data.status.color }};"></span>
+			<span class="gc-status-color" style="display: inline-block;background-color:{{ data.status.color }};width:10px; height:10px;"></span>
 			{{{ data.open }}}
 				{{ data.status.name }}
 			{{{ data.close }}}
