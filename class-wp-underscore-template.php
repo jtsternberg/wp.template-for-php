@@ -176,20 +176,27 @@ class WP_Underscore_Template {
 	/**
 	 * Flatten a multidimensional array with our delimiter.
 	 *
-	 * @param array $array
+	 * @param array  $array
+	 * @param string $assembled_key
 	 *
 	 * @return array
 	 */
-	protected function make_tokens( array $array ) {
+	protected function make_tokens( array $array, $assembled_key = '' ) {
 		$children = array();
 
 		foreach( $array as $key => $value ) {
-			$child_key = $this->parent_key
-				? $this->parent_key . $this->delimiter . $key
-				: $key;
+			$child_key = '';
+
+			if ( $assembled_key ) {
+				$child_key .= $assembled_key . $this->delimiter;
+			} elseif ( $this->parent_key ) {
+				$child_key .= $this->parent_key . $this->delimiter;
+			}
+
+			$child_key .= $key;
 
 			if ( is_array( $value ) ) {
-				$value = $this->make_tokens( $value, $child_key, $this->delimiter );
+				$value = $this->make_tokens( $value, $child_key );
 				$children = array_merge( $children, $value );
 			}
 			else {
