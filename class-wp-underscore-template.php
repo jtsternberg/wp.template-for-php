@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * WP Underscore Template
+ * @since  0.1.0
+ */
 class WP_Underscore_Template {
 
 	/**
@@ -15,6 +19,13 @@ class WP_Underscore_Template {
 	 * @var string
 	 */
 	protected $template = '';
+
+	/**
+	 * Raw template output string.
+	 *
+	 * @var string
+	 */
+	protected $raw = '';
 
 	/**
 	 * Source template tokens.
@@ -68,11 +79,11 @@ class WP_Underscore_Template {
 	 * @return string
 	 */
 	public static function get( $file, $data = array(), $args = array() ) {
-		return self::template_cache( $file, $data, $args )->execute_source();
+		return self::get_object( $file, $data, $args )->execute_source();
 	}
 
 	/**
-	 * Cache the template and tokens
+	 * Cache the template and tokens and return the object.
 	 *
 	 * @param $file
 	 * @param array $data
@@ -80,7 +91,7 @@ class WP_Underscore_Template {
 	 *
 	 * @return mixed
 	 */
-	protected static function template_cache( $file, $data = array(), $args = array() ) {
+	public static function get_object( $file, $data = array(), $args = array() ) {
 
 		$vars = $args;
 		$vars['args'] = $args;
@@ -141,7 +152,7 @@ class WP_Underscore_Template {
 	 * @uses   eval USE WITH CAUTION.
 	 * @return string
 	 */
-	protected function execute_source() {
+	public function execute_source() {
 		$__tokens = $this->tokens;
 		ob_start();
 		eval( '?>'. $this->template );
@@ -164,6 +175,8 @@ class WP_Underscore_Template {
 		else {
 			$source = $file;
 		}
+
+		$this->raw = $source;
 
 		// Strip some tags, especially the <script> tag that normally wraps a
 		// wp.template() template string.
@@ -281,6 +294,17 @@ class WP_Underscore_Template {
 		}
 
 		return $source;
+	}
+
+	/**
+	 * Get raw template data before conversion.
+	 *
+	 * @since  0.1.1
+	 *
+	 * @return string  Raw template data, if it exists.
+	 */
+	public function get_raw() {
+		return $this->raw;
 	}
 
 }
