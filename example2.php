@@ -18,11 +18,17 @@ add_action( 'edit_form_after_title', function() {
 		'status'  => array(
 			'name'  => 'Stop',
 			'color' => 'red',
-		)
+		),
+		'terms' => array(
+			array(
+				'link' => 'https://google.com',
+				'name' => 'google',
+			)
+		),
 	);
 
 	// Let's get the template object.
-	$template = WP_Underscore_Template::get_object( dirname( __FILE__ ) . '/tmpl-gc-item-status.html', $data );
+	$template = WP_Underscore_Template::get_object( dirname( __FILE__ ) . '/tmpl-zao-item-status.html', $data );
 
 	// Output the parsed results.
 	echo $template->execute_source();
@@ -34,7 +40,7 @@ add_action( 'edit_form_after_title', function() {
 	<script type="text/javascript">
 		jQuery( function( $ ) {
 
-			var template = wp.template( 'gc-item-status' ); // uses script tag ID minus "tmpl-"
+			var template = wp.template( 'zao-item-status' ); // uses script tag ID minus "tmpl-"
 			// Turn out $data into a JS json object.
 			var tmplData = <?php echo wp_json_encode( $data ); ?>;
 
@@ -49,7 +55,7 @@ add_action( 'edit_form_after_title', function() {
 				console.log( 'tmplData', tmplData );
 
 				// Now let's replace the contents of the existing markup with our updated template markup.
-				$( '.gc-status-column' ).replaceWith( template( tmplData ) );
+				$( '.zao-status-column' ).replaceWith( template( tmplData ) );
 			}, 500 );
 		});
 
